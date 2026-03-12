@@ -104,6 +104,8 @@ sources are not expected to be available outside of the root Lisp."))
 
 (define-simple-error missing-data-source)
 
+(defvar *consfig-dir* nil "Location of consfig files.")
+
 (defvar *data-sources* nil "Known sources of prerequisite data.")
 
 (defvar *data-source-registrations* nil
@@ -118,15 +120,16 @@ sources are not expected to be available outside of the root Lisp."))
 (defun try-register-data-source (&rest args)
   "Register sources of prerequisite data.
 This function is typically called in consfigs.  Any relative pathnames in ARGS
-will be resolved as paths under the home directory of the user Lisp is running
-as, before being passed to implementations of REGISTER-DATA-SOURCE."
+will be resolved as paths under either *CONSFIG-DIR* if set, or the home
+directory of the user Lisp is running as, before being passed to
+implementations of REGISTER-DATA-SOURCE."
   (unless *no-data-sources*
     (let ((home (user-homedir-pathname)))
       (setq args
             (loop
               for arg in args
               if (pathnamep arg)
-                collect (ensure-pathname arg :defaults home :ensure-absolute t)
+                collect (ensure-pathname arg :defaults (or *consfig-dir* home) :ensure-absolute t)
               else collect arg)))
     (when-let ((pair (and (not (find args *data-source-registrations*
                                      :test #'equal))

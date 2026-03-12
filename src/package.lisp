@@ -740,6 +740,10 @@
                     #:pulled
                     #:repo-configured))
 
+  (package :consfigurator.property.dir
+           (:local-nicknames (#:file      #:consfigurator.property.file))
+           (:export #:snapshot-extracted))
+
   (package :consfigurator.property.sshd
            (:local-nicknames (#:re        #:cl-ppcre)
                              (#:os        #:consfigurator.property.os)
@@ -1086,6 +1090,8 @@
            (:export #:list-data #:get-data #:set-data #:set-data-from-file))
 
   (package :consfigurator.data.git-snapshot)
+
+  (package :consfigurator.data.dir-snapshot)
 
   (package :consfigurator.data.gpgpubkeys)
 
