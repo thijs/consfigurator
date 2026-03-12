@@ -51,7 +51,7 @@ Note that this uses getent(1) and so is not strictly POSIX-compatible."
   "Ensure there is an account for USERNAME with uid UID.
 Also ensure the group named USERNAME has gid GID, USERNAME's primary group is
 that group, and ~USERNAME and its contents are owned by UID:GID."
-  (:hostattrs (os:required 'os:debianlike))
+  (:hostattrs (os:required '(os:debianlike os:crux)))
   (:desc #?"${username} has uid ${uid} gid ${gid}")
   (has-account username)
   (%has-uid-gid username uid gid))

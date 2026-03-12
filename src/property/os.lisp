@@ -117,6 +117,25 @@
   (:hostattrs
    (push-hostattr :os (make-instance 'freebsd-devel :arch architecture))))
 
+
+;; Crux
+
+(defclass crux (unixlike)
+  ((version :initarg :version
+            :type string
+            :reader crux-version
+            :initform (error "Must provide version")
+            :documentation "The numeric part of the version, e.g. 3.8")))
+
+(define-simple-print-object crux)
+
+(defprop crux :posix (version)
+  (:desc #?"Host runs Crux ${version}")
+  (:hostattrs
+   (push-hostattr :os (make-instance 'crux
+                                     :version version))))
+
+
 
 ;;;; Property combinators
 
@@ -181,12 +200,17 @@
 ;;;; Utilities
 
 (defun required (type)
-  "Error out if the OS of the host being deployed is not of type TYPE.
+  "Error out if the OS of the host being deployed is not of type TYPE or is not
+any of the TYPEs in a list of TYPEs.
 
 Used in property :HOSTATTRS subroutines."
   (let ((os (class-of (get-hostattrs-car :os))))
-    (unless (and os (subtypep os type))
-      (inapplicable-property #?"Property requires OS of type ${type}"))))
+    (if (typep type 'keyword)
+        (unless (and os (subtypep os type))
+          (inapplicable-property #?"Property requires OS of type ${type}"))
+        (unless (and os (some #'(lambda (typ) (subtypep os typ)) type))
+          (inapplicable-property #?"Property requires OS to be one of type ${type}")))))
+
 
 (defgeneric supports-arch-p (target-os binary-os)
   (:documentation "Can binaries for BINARY-OS run on TARGET-OS?"))

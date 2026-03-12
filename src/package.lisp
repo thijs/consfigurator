@@ -484,6 +484,8 @@
                     #:freebsd-devel
                     #:freebsd-architecture
                     #:freebsd-version
+                    #:crux
+                    #:crux-version
 
                     #:typecase
                     #:host-typecase
