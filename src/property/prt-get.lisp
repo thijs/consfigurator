@@ -21,7 +21,7 @@
 ;;;; Crux's prt-get(8)
 
 (defun mrun-prt-get (&rest args)
-  (apply #'mrun :env env "prt-get" args))
+  (apply #'mrun "prt-get" args))
 
 (defun mrun-ports (&rest args)
   (apply #'mrun "ports" args))

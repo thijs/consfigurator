@@ -205,11 +205,11 @@ any of the TYPEs in a list of TYPEs.
 
 Used in property :HOSTATTRS subroutines."
   (let ((os (class-of (get-hostattrs-car :os))))
-    (if (typep type 'keyword)
-        (unless (and os (subtypep os type))
-          (inapplicable-property #?"Property requires OS of type ${type}"))
+    (if (typep type 'cons)
         (unless (and os (some #'(lambda (typ) (subtypep os typ)) type))
-          (inapplicable-property #?"Property requires OS to be one of type ${type}")))))
+          (inapplicable-property #?"Property requires OS to be one of type ${type}"))
+        (unless (and os (subtypep os type))
+          (inapplicable-property #?"Property requires OS of type ${type}")))))
 
 
 (defgeneric supports-arch-p (target-os binary-os)
