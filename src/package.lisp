@@ -587,9 +587,19 @@
                     #:cache-cleaned
                     #:cache-emptied))
 
+  (package :consfigurator.property.prt-get
+           (:local-nicknames (#:os      #:consfigurator.property.os))
+           (:export #:installed
+                    #:deleted
+                    #:upgraded
+                    #:autoremoved
+                    #:cache-cleaned
+                    #:cache-emptied))
+
   (package :consfigurator.property.package
-           (:local-nicknames (#:apt   #:consfigurator.property.apt)
-                             (#:pkgng #:consfigurator.property.pkgng))
+           (:local-nicknames (#:apt     #:consfigurator.property.apt)
+                             (#:pkgng   #:consfigurator.property.pkgng)
+                             (#:prt-get #:consfigurator.property.prt-get))
            (:export #:+consfigurator-system-dependencies+
                     #:package-manager-not-found
                     #:installed))
@@ -733,7 +743,8 @@
            (:local-nicknames (#:os        #:consfigurator.property.os)
                              (#:file      #:consfigurator.property.file)
                              (#:apt       #:consfigurator.property.apt)
-                             (#:pkgng     #:consfigurator.property.pkgng))
+                             (#:pkgng     #:consfigurator.property.pkgng)
+                             (#:prt-get   #:consfigurator.property.prt-get))
            (:export #:installed
                     #:snapshot-extracted
                     #:cloned

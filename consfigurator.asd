@@ -50,6 +50,7 @@
                (:file "src/property/service")
                (:file "src/property/apt")
                (:file "src/property/pkgng")
+               (:file "src/property/prt-get")
                (:file "src/property/package")
                (:file "src/property/chroot")
                (:file "src/property/disk")
