@@ -24,7 +24,9 @@
   (:check (remote-executable-find "git"))
   (os:etypecase
     (debianlike (apt:installed "git"))
-    (freebsd (pkgng:installed "git"))))
+    (freebsd (pkgng:installed "git"))
+    (crux (prt-get:installed "git"))
+    ))
 
 (defprop snapshot-extracted :posix
     (snapshot-name directory

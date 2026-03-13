@@ -33,6 +33,9 @@ manager identified by PACKAGE-MANAGER is available."))
 (defmethod %command ((package-manager (eql :pkgng)))
   "pkg")
 
+(defmethod %command ((package-manager (eql :prt-get)))
+  "prt-get")
+
 (defgeneric %installed (package-manager packages)
   (:documentation
    "Install each of PACKAGES using the system package manager identified by
@@ -50,6 +53,9 @@ privileged, if the package is already installed."))
 
 (defmethod %installed ((package-manager (eql :pkgng)) packages)
   (apply-propapp `(pkgng:installed ,@packages)))
+
+(defmethod %installed ((package-manager (eql :prt-get)) packages)
+  (apply-propapp `(prt-get:installed ,@packages)))
 
 (define-simple-error package-manager-not-found (aborted-change))
 
