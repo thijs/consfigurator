@@ -591,10 +591,8 @@
            (:local-nicknames (#:os      #:consfigurator.property.os))
            (:export #:installed
                     #:deleted
-                    #:upgraded
-                    #:autoremoved
-                    #:cache-cleaned
-                    #:cache-emptied))
+                    #:updated
+                    #:upgraded))
 
   (package :consfigurator.property.package
            (:local-nicknames (#:apt     #:consfigurator.property.apt)
