@@ -738,6 +738,18 @@
                     #:pulled
                     #:repo-configured))
 
+  (package :consfigurator.property.git-wt
+           (:local-nicknames (#:os        #:consfigurator.property.os)
+                             (#:file      #:consfigurator.property.file)
+                             (#:apt       #:consfigurator.property.apt)
+                             (#:pkgng     #:consfigurator.property.pkgng)
+                             (#:git       #:consfigurator.property.git))
+           (:export #:initialized))
+
+  (package :consfigurator.property.dir
+           (:local-nicknames (#:file      #:consfigurator.property.file))
+           (:export #:snapshot-extracted))
+
   (package :consfigurator.property.sshd
            (:local-nicknames (#:re        #:cl-ppcre)
                              (#:os        #:consfigurator.property.os)
@@ -1084,6 +1096,10 @@
            (:export #:list-data #:get-data #:set-data #:set-data-from-file))
 
   (package :consfigurator.data.git-snapshot)
+
+  (package :consfigurator.data.git-wt-snapshot)
+
+  (package :consfigurator.data.dir-snapshot)
 
   (package :consfigurator.data.gpgpubkeys)
 
