@@ -138,6 +138,13 @@ implementations of REGISTER-DATA-SOURCE."
       (push pair *data-sources*)
       (push args *data-source-registrations*))))
 
+
+(defmacro with-consfig-dir (cdir &body body)
+  "Run with set consfig dir."
+  `(let ((*consfig-dir* ,cdir))
+     ,@body))
+
+
 (defun reset-data-sources ()
   "Forget all data sources registered in this Lisp image and items of string
 data obtained from data sources by this Lisp image.

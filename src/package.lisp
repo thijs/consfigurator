@@ -333,6 +333,7 @@
 	   #:get-highest-local-cached-prerequisite-data
 
            #:try-register-data-source
+           #:with-consfig-dir
            #:register-data-source
            #:reset-data-sources
            #:get-data-stream
